@@ -1,0 +1,29 @@
+if(isset($usuario) && !empty($usuario)){
+$connect = @ldap_connect($ip_server);
+$bind = @ldap_bind($connect, $usuario, $senha);
+}
+else{
+	 echo ('<img src="Imagens/icons/download.png" width="30" height="27"><br/>Necessário preencher os campos de login e senha.<br/>');
+}
+try{
+	$attributes = array("displayname","description","sn","mail","department","title","physicaldeliveryofficename","manager","fax","phone");
+
+$filter = "(&(objectCategory=person)(sAMAccountName=$sessao))";
+//$ldap_dn="DC=MASTER,DC=LOCAL";
+$ldap_dn="OU=Lan,OU=TERCEIROS,DC=MASTER,DC=LOCAL";
+
+$result = ldap_search($connect, $ldap_dn, $filter) or die ("Erro de autenticação com o servidor AD");
+
+$entries = ldap_get_entries($connect, $result)or die ("Erro ldap_get_entries");
+
+for ($i=0; $i<$entries["count"]; $i++) {
+
+$display=$entries[$i]['displayname'][0];
+$nomecca=$entries[$i]['description'][0];
+$sobrenome=$entries[$i]['sn'][0];
+
+}}
+catch(Exception $e){
+ldap_unbind($connect);
+return;
+}
