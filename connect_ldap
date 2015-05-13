@@ -11,6 +11,8 @@ try{
 $filter = "(&(objectCategory=person)(sAMAccountName=$sessao))";
 //$ldap_dn="DC=MASTER,DC=LOCAL";
 $ldap_dn="OU=Lan,OU=TERCEIROS,DC=MASTER,DC=LOCAL";
+OR // <---------
+$ldap_dn="OU=USERS,DC=MASTER,DC=LOCAL";
 
 $result = ldap_search($connect, $ldap_dn, $filter) or die ("Erro de autenticação com o servidor AD");
 
