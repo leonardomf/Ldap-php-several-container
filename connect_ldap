@@ -29,3 +29,4 @@ catch(Exception $e){
 ldap_unbind($connect);
 return;
 }
+//OK
